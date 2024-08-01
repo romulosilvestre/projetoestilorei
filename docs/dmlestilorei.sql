@@ -13,6 +13,7 @@ use salaoestilorei;
 INSERT servico(nome,valor)VALUES('cabelo',20.00);
 INSERT servico(nome,valor)VALUES('barba',15.00);
 INSERT servico(nome,valor)VALUES('cabelo e barba',32.50);
+INSERT servico(nome,valor)VALUES('sobrancelha',10.20);
 
 -- Três agendamentos
 
@@ -30,12 +31,14 @@ INSERT cliente(nome,telefone,email,senha)VALUES('jose',61999452226,'jose@gmail.c
 INSERT cliente(nome,telefone,email,senha)VALUES('marta',61999452227,'marta@gmail.com',7777);
 INSERT cliente(nome,telefone,email,senha)VALUES('marcos',61999452228,'marcos@gmail.com',8888);
 INSERT cliente(nome,telefone,email,senha)VALUES('Walter',61999452228,'walter@gmail.com',555555);
+INSERT cliente(nome,telefone,email,senha)VALUES('Senhor Raposo',61988789890,'raposao@gmail.com',9999);
 SELECT * FROM cliente;
 
 INSERT funcionario(nome)VALUES('thaysa');
 INSERT funcionario(nome)VALUES('layssa');
 INSERT funcionario(nome)VALUES('abel');
 INSERT funcionario(nome)VALUES('suzane');
+INSERT funcionario(nome)VALUES('Jacobson');
 SELECT * FROM funcionario;
 SELECT * FROM cliente;
 SELECT * FROM servico;
@@ -63,10 +66,40 @@ INSERT INTO agendamento(data_agenda,
                         12,
                         11,
                         4);
+                        
+-- cliente = 13
+-- serviço = 12
+-- funcionário = 5
+INSERT INTO agendamento(data_agenda,
+                        hora,
+                        fk_cliente_id,
+                        fk_servico_id,
+                        fk_funcionario_id)values(
+                        '2024-08-01',
+                        '09:00',
+                        13,
+                        12,
+                        5);
+
 SELECT * FROM agendamento;
 SELECT * FROM cliente;
 SELECT * FROM funcionario;
 SELECT * FROM servico;
+
+SELECT 
+    a.data_agenda,
+    a.hora,
+    c.nome AS cliente , 
+    s.nome AS servico ,
+    f.nome As funcionario
+FROM 
+    agendamento a
+JOIN 
+    cliente c ON a.fk_cliente_id = c.id
+JOIN 
+    servico s ON a.fk_servico_id = s.id
+JOIN 
+    funcionario f ON a.fk_funcionario_id = f.id;
 
 INSERT INTO agendamento(data_agenda, hora, fk_cliente_id, fk_servico_id, fk_funcionario_id) VALUES ('2024-07-27', '09:00', 3, 2, 4);
 INSERT INTO agendamento(data_agenda, hora, fk_cliente_id, fk_servico_id, fk_funcionario_id) VALUES ('2024-07-27', '10:30', 4, 3, 5);
