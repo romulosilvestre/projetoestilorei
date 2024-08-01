@@ -79,7 +79,7 @@ INSERT INTO agendamento(data_agenda,
                         '09:00',
                         13,
                         12,
-                        5);
+                        6);
 
 SELECT * FROM agendamento;
 SELECT * FROM cliente;
